@@ -12,6 +12,8 @@ namespace JapaneseBook.Data
 
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
+        public DbSet<MenuGroup> MenuGroups { set; get; }
+
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {
