@@ -205,12 +205,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
+    <Compile Include="Infrastructure\Core\PaginationSet.cs" />
+    <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -284,6 +287,23 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JapaneseBook.Common\JapaneseBook.Common.csproj">
+      <Project>{4f0d449b-4c49-4451-b1e0-3f73bb48a1ce}</Project>
+      <Name>JapaneseBook.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JapaneseBook.Model\JapaneseBook.Model.csproj">
+      <Project>{3ebe1614-3f40-4eb8-8fea-8ecd29e1ab82}</Project>
+      <Name>JapaneseBook.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JapaneseBook.Service\JapaneseBook.Service.csproj">
+      <Project>{8767521f-929b-48aa-8474-92563fe92341}</Project>
+      <Name>JapaneseBook.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

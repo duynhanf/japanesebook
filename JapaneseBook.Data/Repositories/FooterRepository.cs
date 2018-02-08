@@ -18,7 +18,8 @@ namespace JapaneseBook.Data.Repositories
 
         public IEnumerable<Footer> GetByAlias(string alias)
         {
-            //return this.DbContext..Where(x => x.Alias == alias);
+            //return this.DbContext.Footers.(x => x.Alias == alias);
+
             return null;
         }
     }

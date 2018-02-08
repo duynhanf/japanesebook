@@ -40,7 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonService.cs" />
+    <Compile Include="BookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JapaneseBook.Common\JapaneseBook.Common.csproj">
+      <Project>{4f0d449b-4c49-4451-b1e0-3f73bb48a1ce}</Project>
+      <Name>JapaneseBook.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JapaneseBook.Data\JapaneseBook.Data.csproj">
+      <Project>{ecc80507-98ee-4d3c-b0d9-d9324a5d703f}</Project>
+      <Name>JapaneseBook.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JapaneseBook.Model\JapaneseBook.Model.csproj">
+      <Project>{3ebe1614-3f40-4eb8-8fea-8ecd29e1ab82}</Project>
+      <Name>JapaneseBook.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
