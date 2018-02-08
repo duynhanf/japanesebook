@@ -7,13 +7,13 @@ namespace JapaneseBook.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class removeusertable : IMigrationMetadata
+    public sealed partial class initdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(removeusertable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712251640023_remove-user-table"; }
+            get { return "201802081204125_initdatabase"; }
         }
         
         string IMigrationMetadata.Source

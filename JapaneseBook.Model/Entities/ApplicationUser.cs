@@ -26,6 +26,7 @@ namespace JapaneseBook.Model.Entities
             return userIdentity;
         }
 
+
         public virtual IEnumerable<Order> Orders { set; get; }
     }
 }

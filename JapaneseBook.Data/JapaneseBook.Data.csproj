@@ -38,6 +38,14 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -56,17 +64,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201712251628356_abcinit.cs" />
-    <Compile Include="Migrations\201712251628356_abcinit.Designer.cs">
-      <DependentUpon>201712251628356_abcinit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712251638568_add-user-table.cs" />
-    <Compile Include="Migrations\201712251638568_add-user-table.Designer.cs">
-      <DependentUpon>201712251638568_add-user-table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712251640023_remove-user-table.cs" />
-    <Compile Include="Migrations\201712251640023_remove-user-table.Designer.cs">
-      <DependentUpon>201712251640023_remove-user-table.cs</DependentUpon>
+    <Compile Include="Migrations\201802081204125_initdatabase.cs" />
+    <Compile Include="Migrations\201802081204125_initdatabase.Designer.cs">
+      <DependentUpon>201802081204125_initdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,27 +75,22 @@
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712251628356_abcinit.resx">
-      <DependentUpon>201712251628356_abcinit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712251638568_add-user-table.resx">
-      <DependentUpon>201712251638568_add-user-table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712251640023_remove-user-table.resx">
-      <DependentUpon>201712251640023_remove-user-table.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\JapaneseBook.Model\JapaneseBook.Model.csproj">
       <Project>{3ebe1614-3f40-4eb8-8fea-8ecd29e1ab82}</Project>
       <Name>JapaneseBook.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802081204125_initdatabase.resx">
+      <DependentUpon>201802081204125_initdatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
