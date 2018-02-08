@@ -7,19 +7,19 @@ namespace JapaneseBook.Data.Infrastructure
     public interface IRepository<T> where T : class
     {
         // Marks an entity as new
-        T Add(T entity);
+        T Add(T x_TEntity);
 
         // Marks an entity as modified
-        void Update(T entity);
+        void Update(T x_TEntity);
 
         // Marks an entity to be removed
-        T Delete(T entity);
+        T Delete(T x_TEntity);
 
         //Delete multi records
         void DeleteMulti(Expression<Func<T, bool>> where);
 
         // Get an entity by int id
-        T GetSingleById(int id);
+        T GetSingleById(int x_iID);
 
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
 

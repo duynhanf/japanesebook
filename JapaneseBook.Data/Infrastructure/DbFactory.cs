@@ -2,17 +2,17 @@
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        private JapaneseBookDbContext dbContext;
+        private JapaneseBookDbContext m_objJapaneseBookDbContext;
 
         public JapaneseBookDbContext Init()
         {
-            return dbContext ?? (dbContext = new JapaneseBookDbContext());
+            return m_objJapaneseBookDbContext ?? (m_objJapaneseBookDbContext = new JapaneseBookDbContext());
         }
 
         protected override void DisposeCore()
         {
-            if (dbContext != null)
-                dbContext.Dispose();
+            if (m_objJapaneseBookDbContext != null)
+                m_objJapaneseBookDbContext.Dispose();
         }
     }
 }

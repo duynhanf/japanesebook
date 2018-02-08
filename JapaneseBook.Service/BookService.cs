@@ -6,30 +6,60 @@ using System;
 
 namespace JapaneseBook.Service
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IBookService
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x_objBook"></param>
+        /// <returns></returns>
         Book Add(Book x_objBook);
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x_iBookID"></param>
+        /// <returns></returns>
         Book Delete(int x_iBookID);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<Book> GetAll();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x_iBookID"></param>
+        /// <returns></returns>
+        Book GetBookDetail(int x_iBookID);
 
     }
 
+    /// <summary>
+    /// implement of IBookService
+    /// </summary>
     public class BookService : IBookService
     {
+        private IBookRepository m_objBookRepository;                    //object BookRepository
 
-        private IBookRepository m_objBookRepository;
-
-        private IUnitOfWork m_objUnitOfWork;
-
+        private IUnitOfWork m_objUnitOfWork;                            //object UnitOfWork
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="x_objBookRepository"></param>
+        /// <param name="x_objUnitOfWork"></param>
         public BookService(IBookRepository x_objBookRepository, IUnitOfWork x_objUnitOfWork)
         {
             this.m_objBookRepository = x_objBookRepository;
             this.m_objUnitOfWork = x_objUnitOfWork;
         }
-
-
+        
         /// <summary>
         /// Add new book
         /// </summary>
@@ -63,5 +93,16 @@ namespace JapaneseBook.Service
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Get detail book by id
+        /// </summary>
+        /// <param name="x_iBookID"></param>
+        /// <returns></returns>
+        public Book GetBookDetail(int x_iBookID)
+        {
+            return m_objBookRepository.GetSingleById(x_iBookID);
+        }
+
     }
 }
