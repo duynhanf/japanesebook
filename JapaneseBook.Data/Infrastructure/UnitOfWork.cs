@@ -21,6 +21,9 @@ namespace JapaneseBook.Data.Infrastructure
             get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
 
+        /// <summary>
+        /// Save to database
+        /// </summary>
         public void Commit()
         {
             DbContext.SaveChanges();

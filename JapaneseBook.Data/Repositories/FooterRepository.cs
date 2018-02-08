@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using JapaneseBook.Data.Infrastructure;
 using JapaneseBook.Model;
 
