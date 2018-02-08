@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace JapaneseBook.Model.Models
+namespace JapaneseBook.Model.Entities
 {
     [Table("OrderDetails")]
     public class OrderDetail
@@ -12,7 +12,7 @@ namespace JapaneseBook.Model.Models
 
         [Key]
         [Column(Order = 2)]
-        public int ProductID { set; get; }
+        public int BookID { set; get; }
 
         public int Quantity { set; get; }
 
@@ -21,7 +21,7 @@ namespace JapaneseBook.Model.Models
         [ForeignKey("OrderID")]
         public virtual Order Order { set; get; }
 
-        [ForeignKey("ProductID")]
-        public virtual Product Product { set; get; }
+        [ForeignKey("BookID")]
+        public virtual Book Book { set; get; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace JapaneseBook.Model.Models
+namespace JapaneseBook.Model.Entities
 {
     [Table("Orders")]
     public class Order

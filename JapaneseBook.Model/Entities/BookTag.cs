@@ -1,22 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace JapaneseBook.Model.Models
+namespace JapaneseBook.Model.Entities
 {
-    [Table("PostTags")]
-    public class PostTag
+    [Table("BookTags")]
+    public class BookTag
     {
         [Key]
         [Column(Order = 1)]
-        public int PostID { set; get; }
+        public int BookID { set; get; }
 
         [Key]
-        [Column(TypeName = "varchar",Order =2)]
+        [Column(TypeName = "varchar", Order = 2)]
         [MaxLength(50)]
         public string TagID { set; get; }
 
-        [ForeignKey("PostID")]
-        public virtual Post Post { set; get; }
+        [ForeignKey("BookID")]
+        public virtual Book Book { set; get; }
 
         [ForeignKey("TagID")]
         public virtual Tag Tag { set; get; }

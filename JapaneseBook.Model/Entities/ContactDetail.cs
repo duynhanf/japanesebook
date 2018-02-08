@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JapaneseBook.Model.Models
+namespace JapaneseBook.Model.Entities
 {
     [Table("ContactDetails")]
     public class ContactDetail

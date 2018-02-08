@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace JapaneseBook.Model.Models
+namespace JapaneseBook.Model.Entities
 {
     [Table("SystemConfigs")]
     public class SystemConfig

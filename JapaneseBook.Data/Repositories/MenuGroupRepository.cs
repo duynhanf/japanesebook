@@ -1,5 +1,5 @@
 ﻿using JapaneseBook.Data.Infrastructure;
-using JapaneseBook.Model.Models;
+using JapaneseBook.Model.Entities;
 
 namespace JapaneseBook.Data.Repositories
 {

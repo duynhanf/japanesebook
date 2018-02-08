@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using JapaneseBook.Model.Entities.Abstract;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using JapaneseBook.Model.Models.Abstract;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace JapaneseBook.Model.Models
+namespace JapaneseBook.Model.Entities
 {
-    [Table("ProductCategories")]
-    public class ProductCategory : Auditable
+    [Table("BookCategories")]
+    public class BookCategory : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,7 +26,9 @@ namespace JapaneseBook.Model.Models
 
         [MaxLength(500)]
         public string Description { set; get; }
+
         public int? ParentID { set; get; }
+
         public int? DisplayOrder { set; get; }
 
         [MaxLength(256)]
@@ -30,6 +36,6 @@ namespace JapaneseBook.Model.Models
 
         public bool? HomeFlag { set; get; }
 
-        public virtual IEnumerable<Product> Products { set; get; }
+        public virtual IEnumerable<Book> Products { set; get; }
     }
 }

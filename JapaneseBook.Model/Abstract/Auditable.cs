@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace JapaneseBook.Model.Models.Abstract
+namespace JapaneseBook.Model.Entities.Abstract
 {
     public abstract class Auditable : IAuditable
     {
