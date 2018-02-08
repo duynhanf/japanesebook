@@ -9,6 +9,7 @@ namespace JapaneseBook.Service
         Footer GetFooter();
         IEnumerable<Slide> GetSlides();
     }
+
     public class CommonService : ICommonService
     {
         /*
