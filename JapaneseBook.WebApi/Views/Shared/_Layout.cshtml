@@ -21,7 +21,12 @@
     @RenderPage("~/Views/Shared/_NavBar.cshtml")
     <!-- Page Content -->
     <div class="container">
-        @RenderBody()
+        <div class="row">
+            @{Html.RenderAction("_SideBar", "Home");}
+            @*@RenderPage("~/Views/Shared/_SideBar.cshtml")*@
+            @RenderBody()
+        </div>
+
     </div>
     <!-- /.container -->
     <!-- Footer -->

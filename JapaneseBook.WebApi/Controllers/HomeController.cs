@@ -14,5 +14,14 @@ namespace JapaneseBook.WebApi.Controllers
 
             return View();
         }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
+        public ActionResult _SideBar()
+        {
+            return PartialView();
+        }
     }
+
+    
 }

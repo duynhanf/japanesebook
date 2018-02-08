@@ -13,3 +13,44 @@ body {
     padding-top: 56px;
   }
 }
+
+
+.book-detail li{
+    list-style : none;
+    padding : 10px 0px;
+    
+}
+
+.book-detail .book-detail-lb{
+    font-weight:bold;
+    padding-right : 10px;
+}
+
+.book-detail .price{
+    color : darkgray;
+    text-decoration: line-through;
+}
+
+.book-detail .promotion{
+    color : orangered;
+    font-size : 22px;
+}
+.book-detail-lb.title{
+    color : seagreen;
+    font-size : 24px;
+}
+
+.book-detail-lb.status-on{
+    color : forestgreen;
+}
+
+.book-detail-lb.status-off{
+    color : red;
+}
+.book-image{
+    text-align : center;
+}
+
+.book-image img{
+    width : 40%;
+}
