@@ -1,4 +1,4 @@
-﻿using JapaneseBook.Model;
+﻿using JapaneseBook.Model.Models;
 using System.Data.Entity;
 
 namespace JapaneseBook.Data

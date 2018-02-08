@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace JapaneseBook.Model
+namespace JapaneseBook.Model.Models
 {
     [Table("ProductTags")]
     public class ProductTag

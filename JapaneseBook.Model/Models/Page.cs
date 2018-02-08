@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using JapaneseBook.Model.Abstract;
+using JapaneseBook.Model.Models.Abstract;
 
-namespace JapaneseBook.Model
+namespace JapaneseBook.Model.Models
 {
     [Table("Pages")]
     public class Page : Auditable

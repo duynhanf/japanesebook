@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JapaneseBook.Model
+namespace JapaneseBook.Model.Models
 {
     [Table("Users")]
     public class User

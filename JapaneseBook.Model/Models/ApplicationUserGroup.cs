@@ -6,22 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JapaneseBook.Model
+namespace JapaneseBook.Model.Models
 {
-    [Table("ApplicationRoleGroups")]
-    public class ApplicationRoleGroup
+    public class ApplicationUserGroup
     {
-        [Key]
-        [Column(Order = 1)]
-        public int GroupId { set; get; }
-
-        [Column(Order = 2)]
         [StringLength(128)]
         [Key]
-        public string RoleId { set; get; }
+        [Column(Order = 1)]
+        public string UserId { set; get; }
 
-        [ForeignKey("RoleId")]
-        public virtual ApplicationRole ApplicationRole { set; get; }
+        [Key]
+        [Column(Order = 2)]
+        public int GroupId { set; get; }
+
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { set; get; }
 
         [ForeignKey("GroupId")]
         public virtual ApplicationGroup ApplicationGroup { set; get; }

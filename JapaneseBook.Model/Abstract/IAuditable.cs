@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JapaneseBook.Model.Abstract
+namespace JapaneseBook.Model.Models.Abstract
 {
     public interface IAuditable
     {

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using JapaneseBook.Model.Abstract;
+using System.Xml.Linq;
+using JapaneseBook.Model.Models.Abstract;
 
-namespace JapaneseBook.Model
+namespace JapaneseBook.Model.Models
 {
-    [Table("Posts")]
-    public class Post : Auditable
+    [Table("Products")]
+    public class Product : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,7 +20,6 @@ namespace JapaneseBook.Model
 
         [Required]
         [MaxLength(256)]
-        [Column(TypeName = "varchar")]
         public string Alias { set; get; }
 
         [Required]
@@ -28,18 +28,32 @@ namespace JapaneseBook.Model
         [MaxLength(256)]
         public string Image { set; get; }
 
+        [Column(TypeName = "xml")]
+        public string MoreImages { set; get; }
+
+        public decimal Price { set; get; }
+
+        public decimal? PromotionPrice { set; get; }
+
+        public int? Warranty { set; get; }
+
         [MaxLength(500)]
         public string Description { set; get; }
-
         public string Content { set; get; }
 
         public bool? HomeFlag { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
 
-        [ForeignKey("CategoryID")]
-        public virtual PostCategory PostCategory { set; get; }
+        public string Tags { set; get; }
 
-        public virtual IEnumerable<PostTag> PostTags { set; get; }
+        public int Quantity { set; get; }
+
+        public decimal OriginalPrice { set; get; }
+
+        [ForeignKey("CategoryID")]
+        public virtual ProductCategory ProductCategory { set; get; }
+
+        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }
 }
