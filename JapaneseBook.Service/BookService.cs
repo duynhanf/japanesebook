@@ -11,6 +11,7 @@ namespace JapaneseBook.Service
     /// </summary>
     public interface IBookService
     {
+
         /// <summary>
         /// 
         /// </summary>
@@ -91,7 +92,7 @@ namespace JapaneseBook.Service
         /// <returns></returns>
         public IEnumerable<Book> GetAll()
         {
-            throw new NotImplementedException();
+            return m_objBookRepository.GetAll();
         }
 
         /// <summary>
