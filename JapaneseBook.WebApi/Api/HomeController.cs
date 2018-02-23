@@ -2,10 +2,12 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace JapaneseBook.WebApi.Api
 {
     [RoutePrefix("api/home")]
+    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     public class HomeController : ApiControllerBase
     {
         
@@ -24,7 +26,7 @@ namespace JapaneseBook.WebApi.Api
             {
                 var testApi = "Nhan";
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.BadRequest, testApi);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, testApi);
 
                 return response;
             });

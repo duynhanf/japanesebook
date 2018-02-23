@@ -1,9 +1,23 @@
-﻿<div class="col-lg-3">
+﻿@using JapaneseBook.WebApi.ViewModels.Shared;
+@using JapaneseBook.Model.Entities;
+@model SideBarModel
+@{ 
+    List<Menu> listMenu = Model.listMenu1;
+}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+<div class="col-lg-3">
     <h3 class="my-4">Sách tiếng Nhật</h3>
     <div class="list-group">
-        <a href="#" class="list-group-item">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        <a href="#" class="list-group-item">Category 3</a>
+        <ul id="demo">
+        </ul>
+        @*@{
+            foreach (var menu in listMenu)
+            {
+                <a href="@menu.URL" class="list-group-item">@menu.Name</a>
+            };
+
+        }*@
     </div>
     <h3 class="my-4">Sách bán chạy</h3>
     <div class="list-group">
@@ -12,3 +26,99 @@
         <a href="#" class="list-group-item">Category 3</a>
     </div>
 </div>
+<!-- item template -->
+<script type="text/x-template" id="item-template">
+    <li>
+        <div class="{bold: isFolder}"
+             @@click="toggle"
+             @@dblclick="changeType">
+            abc
+            <span v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
+        </div>
+        <ul v-show="open" v-if="isFolder">
+            <item class="item"
+                  v-for="(model, index) in model.children"
+                  key="index"
+                  model="model">
+            </item>
+            <li class="add" @@click="addChild">+</li>
+        </ul>
+    </li>
+</script>
+<script>
+    // demo data
+    var data = {
+        name: 'My Tree',
+        children: [
+          { name: 'hello' },
+          { name: 'wat' },
+          {
+              name: 'child folder',
+              children: [
+                {
+                    name: 'child folder',
+                    children: [
+                      { name: 'hello' },
+                      { name: 'wat' }
+                    ]
+                },
+                { name: 'hello' },
+                { name: 'wat' },
+                {
+                    name: 'child folder',
+                    children: [
+                      { name: 'hello' },
+                      { name: 'wat' }
+                    ]
+                }
+              ]
+          }
+        ]
+    }
+
+    // define the item component
+    Vue.component('item', {
+        template: '#item-template',
+        props: {
+            model: Object
+        },
+        data: function () {
+            return {
+                open: false
+            }
+        },
+        computed: {
+            isFolder: function () {
+                return this.model.children &&
+                  this.model.children.length
+            }
+        },
+        methods: {
+            toggle: function () {
+                if (this.isFolder) {
+                    this.open = !this.open
+                }
+            },
+            changeType: function () {
+                if (!this.isFolder) {
+                    Vue.set(this.model, 'children', [])
+                    this.addChild()
+                    this.open = true
+                }
+            },
+            addChild: function () {
+                this.model.children.push({
+                    name: 'new stuff'
+                })
+            }
+        }
+    })
+
+    // boot up the demo
+    var demo = new Vue({
+        el: '#demo',
+        data: {
+            treeData: data
+        }
+    })
+</script>

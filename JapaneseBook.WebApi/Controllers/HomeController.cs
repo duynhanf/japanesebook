@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JapaneseBook.Model.Entities;
+using JapaneseBook.WebApi.ViewModels.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,11 +17,18 @@ namespace JapaneseBook.WebApi.Controllers
             return View();
         }
 
-        [ChildActionOnly]
-        [OutputCache(Duration = 3600)]
+       // [ChildActionOnly]
+        //[OutputCache(Duration = 3600)]
         public ActionResult _SideBar()
         {
-            return PartialView();
+            SideBarModel objSideBarModel = new SideBarModel();
+            objSideBarModel.listMenu1.Add(new Menu()
+            {
+                Name = "TRY N2",
+                URL = "/Book/try-n2"
+            });
+            
+            return PartialView(objSideBarModel);
         }
     }
 

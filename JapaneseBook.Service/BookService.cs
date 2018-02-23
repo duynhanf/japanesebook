@@ -47,7 +47,6 @@ namespace JapaneseBook.Service
     public class BookService : IBookService
     {
         private IBookRepository m_objBookRepository;                    //object BookRepository
-
         private IUnitOfWork m_objUnitOfWork;                            //object UnitOfWork
         
         /// <summary>

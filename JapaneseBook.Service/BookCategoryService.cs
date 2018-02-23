@@ -9,17 +9,21 @@ using System.Threading.Tasks;
 
 namespace JapaneseBook.Service
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IBookCategoryService
     {
         BookCategory Add(BookCategory x_objBookCategory);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class BookCategoryService : IBookCategoryService
     {
         private IBookCategoryRepository m_objBookCategoryRepository;                    //object BookRepository
-
-        private IUnitOfWork m_objUnitOfWork;                            //object UnitOfWork
+        private IUnitOfWork m_objUnitOfWork;                                            //object UnitOfWork
 
         /// <summary>
         /// Constructor
