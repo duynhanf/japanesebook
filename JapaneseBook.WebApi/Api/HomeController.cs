@@ -10,7 +10,6 @@ namespace JapaneseBook.WebApi.Api
     [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     public class HomeController : ApiControllerBase
     {
-        
         [HttpGet]
         [Route("TestMethod")]
         public string TestMethod()

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using JapaneseBook.Model.Entities;
+using System;
 using System.Collections.Generic;
-using JapaneseBook.Model.Entities;
 
 namespace JapaneseBook.Service
 {
     public interface ICommonService
     {
         Footer GetFooter();
+
         IEnumerable<Slide> GetSlides();
     }
 
@@ -33,6 +34,7 @@ namespace JapaneseBook.Service
         }
 
     */
+
         public Footer GetFooter()
         {
             throw new NotImplementedException();

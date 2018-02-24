@@ -1,44 +1,41 @@
 ﻿using JapaneseBook.Data.Infrastructure;
-using JapaneseBook.Model.Entities;
 using JapaneseBook.Data.Repositories;
+using JapaneseBook.Model.Entities;
 using System.Collections.Generic;
-using System;
 
 namespace JapaneseBook.Service
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public interface IBookService
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x_objBook"></param>
         /// <returns></returns>
         Book Add(Book x_objBook);
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x_iBookID"></param>
         /// <returns></returns>
         Book Delete(int x_iBookID);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         IEnumerable<Book> GetAll();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="x_iBookID"></param>
         /// <returns></returns>
         Book GetBookDetail(int x_iBookID);
-
     }
 
     /// <summary>
@@ -48,7 +45,7 @@ namespace JapaneseBook.Service
     {
         private IBookRepository m_objBookRepository;                    //object BookRepository
         private IUnitOfWork m_objUnitOfWork;                            //object UnitOfWork
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -59,7 +56,7 @@ namespace JapaneseBook.Service
             this.m_objBookRepository = x_objBookRepository;
             this.m_objUnitOfWork = x_objUnitOfWork;
         }
-        
+
         /// <summary>
         /// Add new book
         /// </summary>
@@ -69,7 +66,7 @@ namespace JapaneseBook.Service
         {
             var objBook = m_objBookRepository.Add(x_objBook);
             m_objUnitOfWork.Commit();
-            
+
             return objBook;
         }
 
@@ -103,6 +100,5 @@ namespace JapaneseBook.Service
         {
             return m_objBookRepository.GetSingleById(x_iBookID);
         }
-
     }
 }

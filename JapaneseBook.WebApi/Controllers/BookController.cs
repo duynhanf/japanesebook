@@ -1,17 +1,9 @@
-﻿using JapaneseBook.Web.Infrastructure.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace JapaneseBook.WebApi.Controllers
 {
     public class BookController : Controller
     {
-
         public ActionResult Index()
         {
             return View();
@@ -23,7 +15,9 @@ namespace JapaneseBook.WebApi.Controllers
         }
 
         /*
+
         #region Initialize
+
         private IProductService _productService;
 
         public ProductController(IErrorService errorService, IProductService productService)
@@ -32,7 +26,7 @@ namespace JapaneseBook.WebApi.Controllers
             this._productService = productService;
         }
 
-        #endregion
+        #endregion Initialize
 
         [Route("getallparents")]
         [HttpGet]
@@ -89,7 +83,6 @@ namespace JapaneseBook.WebApi.Controllers
                 return response;
             });
         }
-
 
         [Route("create")]
         [HttpPost]
@@ -203,6 +196,5 @@ namespace JapaneseBook.WebApi.Controllers
             });
         }
         */
-
     }
 }

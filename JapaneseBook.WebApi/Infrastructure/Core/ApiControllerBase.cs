@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using JapaneseBook.Model.Entities;
+
 //using JapaneseBook.Service;
 
 namespace JapaneseBook.Web.Infrastructure.Core

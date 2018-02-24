@@ -1,8 +1,7 @@
 namespace JapaneseBook.Data.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class initdatabase : DbMigration
     {
         public override void Up()
@@ -10,413 +9,412 @@ namespace JapaneseBook.Data.Migrations
             CreateTable(
                 "dbo.ApplicationGroups",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 250),
-                        Description = c.String(maxLength: 250),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(maxLength: 250),
+                    Description = c.String(maxLength: 250),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.ApplicationRoleGroups",
                 c => new
-                    {
-                        GroupId = c.Int(nullable: false),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    GroupId = c.Int(nullable: false),
+                    RoleId = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => new { t.GroupId, t.RoleId })
                 .ForeignKey("dbo.ApplicationGroups", t => t.GroupId, cascadeDelete: true)
                 .ForeignKey("dbo.ApplicationRoles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.GroupId)
                 .Index(t => t.RoleId);
-            
+
             CreateTable(
                 "dbo.ApplicationRoles",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(),
-                        Description = c.String(maxLength: 250),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    Name = c.String(),
+                    Description = c.String(maxLength: 250),
+                    Discriminator = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => t.Id);
-            
+
             CreateTable(
                 "dbo.ApplicationUserRoles",
                 c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                        IdentityRole_Id = c.String(maxLength: 128),
-                    })
+                {
+                    UserId = c.String(nullable: false, maxLength: 128),
+                    RoleId = c.String(nullable: false, maxLength: 128),
+                    ApplicationUser_Id = c.String(maxLength: 128),
+                    IdentityRole_Id = c.String(maxLength: 128),
+                })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
                 .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
                 .ForeignKey("dbo.ApplicationRoles", t => t.IdentityRole_Id)
                 .Index(t => t.ApplicationUser_Id)
                 .Index(t => t.IdentityRole_Id);
-            
+
             CreateTable(
                 "dbo.ApplicationUserGroups",
                 c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        GroupId = c.Int(nullable: false),
-                    })
+                {
+                    UserId = c.String(nullable: false, maxLength: 128),
+                    GroupId = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => new { t.UserId, t.GroupId })
                 .ForeignKey("dbo.ApplicationGroups", t => t.GroupId, cascadeDelete: true)
                 .ForeignKey("dbo.ApplicationUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.GroupId);
-            
+
             CreateTable(
                 "dbo.ApplicationUsers",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        FullName = c.String(maxLength: 256),
-                        Address = c.String(maxLength: 256),
-                        BirthDay = c.DateTime(),
-                        Email = c.String(),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        PasswordHash = c.String(),
-                        SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    FullName = c.String(maxLength: 256),
+                    Address = c.String(maxLength: 256),
+                    BirthDay = c.DateTime(),
+                    Email = c.String(),
+                    EmailConfirmed = c.Boolean(nullable: false),
+                    PasswordHash = c.String(),
+                    SecurityStamp = c.String(),
+                    PhoneNumber = c.String(),
+                    PhoneNumberConfirmed = c.Boolean(nullable: false),
+                    TwoFactorEnabled = c.Boolean(nullable: false),
+                    LockoutEndDateUtc = c.DateTime(),
+                    LockoutEnabled = c.Boolean(nullable: false),
+                    AccessFailedCount = c.Int(nullable: false),
+                    UserName = c.String(),
+                })
                 .PrimaryKey(t => t.Id);
-            
+
             CreateTable(
                 "dbo.ApplicationUserClaims",
                 c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        Id = c.Int(nullable: false),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
+                {
+                    UserId = c.String(nullable: false, maxLength: 128),
+                    Id = c.Int(nullable: false),
+                    ClaimType = c.String(),
+                    ClaimValue = c.String(),
+                    ApplicationUser_Id = c.String(maxLength: 128),
+                })
                 .PrimaryKey(t => t.UserId)
                 .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
-            
+
             CreateTable(
                 "dbo.ApplicationUserLogins",
                 c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        LoginProvider = c.String(),
-                        ProviderKey = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
+                {
+                    UserId = c.String(nullable: false, maxLength: 128),
+                    LoginProvider = c.String(),
+                    ProviderKey = c.String(),
+                    ApplicationUser_Id = c.String(maxLength: 128),
+                })
                 .PrimaryKey(t => t.UserId)
                 .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
-            
+
             CreateTable(
                 "dbo.BookCategories",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Alias = c.String(nullable: false, maxLength: 256),
-                        Description = c.String(maxLength: 500),
-                        ParentID = c.Int(),
-                        DisplayOrder = c.Int(),
-                        Image = c.String(maxLength: 256),
-                        HomeFlag = c.Boolean(),
-                        CreatedDate = c.DateTime(),
-                        CreatedBy = c.String(maxLength: 256),
-                        UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(maxLength: 256),
-                        MetaKeyword = c.String(maxLength: 256),
-                        MetaDescription = c.String(maxLength: 256),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Alias = c.String(nullable: false, maxLength: 256),
+                    Description = c.String(maxLength: 500),
+                    ParentID = c.Int(),
+                    DisplayOrder = c.Int(),
+                    Image = c.String(maxLength: 256),
+                    HomeFlag = c.Boolean(),
+                    CreatedDate = c.DateTime(),
+                    CreatedBy = c.String(maxLength: 256),
+                    UpdatedDate = c.DateTime(),
+                    UpdatedBy = c.String(maxLength: 256),
+                    MetaKeyword = c.String(maxLength: 256),
+                    MetaDescription = c.String(maxLength: 256),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.Books",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Alias = c.String(nullable: false, maxLength: 256),
-                        CategoryID = c.Int(nullable: false),
-                        Image = c.String(maxLength: 256),
-                        MoreImages = c.String(storeType: "xml"),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PromotionPrice = c.Decimal(precision: 18, scale: 2),
-                        Warranty = c.Int(),
-                        Description = c.String(maxLength: 500),
-                        Content = c.String(),
-                        HomeFlag = c.Boolean(),
-                        HotFlag = c.Boolean(),
-                        ViewCount = c.Int(),
-                        Tags = c.String(),
-                        Quantity = c.Int(nullable: false),
-                        OriginalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        CreatedDate = c.DateTime(),
-                        CreatedBy = c.String(maxLength: 256),
-                        UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(maxLength: 256),
-                        MetaKeyword = c.String(maxLength: 256),
-                        MetaDescription = c.String(maxLength: 256),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Alias = c.String(nullable: false, maxLength: 256),
+                    CategoryID = c.Int(nullable: false),
+                    Image = c.String(maxLength: 256),
+                    MoreImages = c.String(storeType: "xml"),
+                    Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    PromotionPrice = c.Decimal(precision: 18, scale: 2),
+                    Warranty = c.Int(),
+                    Description = c.String(maxLength: 500),
+                    Content = c.String(),
+                    HomeFlag = c.Boolean(),
+                    HotFlag = c.Boolean(),
+                    ViewCount = c.Int(),
+                    Tags = c.String(),
+                    Quantity = c.Int(nullable: false),
+                    OriginalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    CreatedDate = c.DateTime(),
+                    CreatedBy = c.String(maxLength: 256),
+                    UpdatedDate = c.DateTime(),
+                    UpdatedBy = c.String(maxLength: 256),
+                    MetaKeyword = c.String(maxLength: 256),
+                    MetaDescription = c.String(maxLength: 256),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.BookCategories", t => t.CategoryID, cascadeDelete: true)
                 .Index(t => t.CategoryID);
-            
+
             CreateTable(
                 "dbo.BookTags",
                 c => new
-                    {
-                        BookID = c.Int(nullable: false),
-                        TagID = c.String(nullable: false, maxLength: 50, unicode: false),
-                    })
+                {
+                    BookID = c.Int(nullable: false),
+                    TagID = c.String(nullable: false, maxLength: 50, unicode: false),
+                })
                 .PrimaryKey(t => new { t.BookID, t.TagID })
                 .ForeignKey("dbo.Books", t => t.BookID, cascadeDelete: true)
                 .ForeignKey("dbo.Tags", t => t.TagID, cascadeDelete: true)
                 .Index(t => t.BookID)
                 .Index(t => t.TagID);
-            
+
             CreateTable(
                 "dbo.Tags",
                 c => new
-                    {
-                        ID = c.String(nullable: false, maxLength: 50, unicode: false),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Type = c.String(nullable: false, maxLength: 50),
-                    })
+                {
+                    ID = c.String(nullable: false, maxLength: 50, unicode: false),
+                    Name = c.String(nullable: false, maxLength: 50),
+                    Type = c.String(nullable: false, maxLength: 50),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.ContactDetails",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 250),
-                        Phone = c.String(maxLength: 50),
-                        Email = c.String(maxLength: 250),
-                        Website = c.String(maxLength: 250),
-                        Address = c.String(maxLength: 250),
-                        Other = c.String(),
-                        Lat = c.Double(),
-                        Lng = c.Double(),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 250),
+                    Phone = c.String(maxLength: 50),
+                    Email = c.String(maxLength: 250),
+                    Website = c.String(maxLength: 250),
+                    Address = c.String(maxLength: 250),
+                    Other = c.String(),
+                    Lat = c.Double(),
+                    Lng = c.Double(),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.Footers",
                 c => new
-                    {
-                        ID = c.String(nullable: false, maxLength: 50),
-                        Content = c.String(nullable: false),
-                    })
+                {
+                    ID = c.String(nullable: false, maxLength: 50),
+                    Content = c.String(nullable: false),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.MenuGroups",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 50),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.Menus",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        URL = c.String(nullable: false, maxLength: 256),
-                        DisplayOrder = c.Int(),
-                        GroupID = c.Int(nullable: false),
-                        Target = c.String(maxLength: 10),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 50),
+                    URL = c.String(nullable: false, maxLength: 256),
+                    DisplayOrder = c.Int(),
+                    GroupID = c.Int(nullable: false),
+                    Target = c.String(maxLength: 10),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.MenuGroups", t => t.GroupID, cascadeDelete: true)
                 .Index(t => t.GroupID);
-            
+
             CreateTable(
                 "dbo.OrderDetails",
                 c => new
-                    {
-                        OrderID = c.Int(nullable: false),
-                        BookID = c.Int(nullable: false),
-                        Quantity = c.Int(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    })
+                {
+                    OrderID = c.Int(nullable: false),
+                    BookID = c.Int(nullable: false),
+                    Quantity = c.Int(nullable: false),
+                    Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                })
                 .PrimaryKey(t => new { t.OrderID, t.BookID })
                 .ForeignKey("dbo.Books", t => t.BookID, cascadeDelete: true)
                 .ForeignKey("dbo.Orders", t => t.OrderID, cascadeDelete: true)
                 .Index(t => t.OrderID)
                 .Index(t => t.BookID);
-            
+
             CreateTable(
                 "dbo.Orders",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        CustomerName = c.String(nullable: false, maxLength: 256),
-                        CustomerAddress = c.String(nullable: false, maxLength: 256),
-                        CustomerEmail = c.String(nullable: false, maxLength: 256),
-                        CustomerMobile = c.String(nullable: false, maxLength: 50),
-                        CustomerMessage = c.String(nullable: false, maxLength: 256),
-                        PaymentMethod = c.String(maxLength: 256),
-                        CreatedDate = c.DateTime(),
-                        CreatedBy = c.String(),
-                        PaymentStatus = c.String(),
-                        Status = c.Boolean(nullable: false),
-                        CustomerId = c.String(maxLength: 128),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    CustomerName = c.String(nullable: false, maxLength: 256),
+                    CustomerAddress = c.String(nullable: false, maxLength: 256),
+                    CustomerEmail = c.String(nullable: false, maxLength: 256),
+                    CustomerMobile = c.String(nullable: false, maxLength: 50),
+                    CustomerMessage = c.String(nullable: false, maxLength: 256),
+                    PaymentMethod = c.String(maxLength: 256),
+                    CreatedDate = c.DateTime(),
+                    CreatedBy = c.String(),
+                    PaymentStatus = c.String(),
+                    Status = c.Boolean(nullable: false),
+                    CustomerId = c.String(maxLength: 128),
+                })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.ApplicationUsers", t => t.CustomerId)
                 .Index(t => t.CustomerId);
-            
+
             CreateTable(
                 "dbo.Pages",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Alias = c.String(nullable: false, maxLength: 256, unicode: false),
-                        Content = c.String(),
-                        CreatedDate = c.DateTime(),
-                        CreatedBy = c.String(maxLength: 256),
-                        UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(maxLength: 256),
-                        MetaKeyword = c.String(maxLength: 256),
-                        MetaDescription = c.String(maxLength: 256),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Alias = c.String(nullable: false, maxLength: 256, unicode: false),
+                    Content = c.String(),
+                    CreatedDate = c.DateTime(),
+                    CreatedBy = c.String(maxLength: 256),
+                    UpdatedDate = c.DateTime(),
+                    UpdatedBy = c.String(maxLength: 256),
+                    MetaKeyword = c.String(maxLength: 256),
+                    MetaDescription = c.String(maxLength: 256),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.PostCategories",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Alias = c.String(nullable: false, maxLength: 256, unicode: false),
-                        Description = c.String(maxLength: 500),
-                        ParentID = c.Int(),
-                        DisplayOrder = c.Int(),
-                        Image = c.String(maxLength: 256),
-                        HomeFlag = c.Boolean(),
-                        CreatedDate = c.DateTime(),
-                        CreatedBy = c.String(maxLength: 256),
-                        UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(maxLength: 256),
-                        MetaKeyword = c.String(maxLength: 256),
-                        MetaDescription = c.String(maxLength: 256),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Alias = c.String(nullable: false, maxLength: 256, unicode: false),
+                    Description = c.String(maxLength: 500),
+                    ParentID = c.Int(),
+                    DisplayOrder = c.Int(),
+                    Image = c.String(maxLength: 256),
+                    HomeFlag = c.Boolean(),
+                    CreatedDate = c.DateTime(),
+                    CreatedBy = c.String(maxLength: 256),
+                    UpdatedDate = c.DateTime(),
+                    UpdatedBy = c.String(maxLength: 256),
+                    MetaKeyword = c.String(maxLength: 256),
+                    MetaDescription = c.String(maxLength: 256),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.Posts",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Alias = c.String(nullable: false, maxLength: 256, unicode: false),
-                        CategoryID = c.Int(nullable: false),
-                        Image = c.String(maxLength: 256),
-                        Description = c.String(maxLength: 500),
-                        Content = c.String(),
-                        HomeFlag = c.Boolean(),
-                        HotFlag = c.Boolean(),
-                        ViewCount = c.Int(),
-                        CreatedDate = c.DateTime(),
-                        CreatedBy = c.String(maxLength: 256),
-                        UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(maxLength: 256),
-                        MetaKeyword = c.String(maxLength: 256),
-                        MetaDescription = c.String(maxLength: 256),
-                        Status = c.Boolean(nullable: false),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Alias = c.String(nullable: false, maxLength: 256, unicode: false),
+                    CategoryID = c.Int(nullable: false),
+                    Image = c.String(maxLength: 256),
+                    Description = c.String(maxLength: 500),
+                    Content = c.String(),
+                    HomeFlag = c.Boolean(),
+                    HotFlag = c.Boolean(),
+                    ViewCount = c.Int(),
+                    CreatedDate = c.DateTime(),
+                    CreatedBy = c.String(maxLength: 256),
+                    UpdatedDate = c.DateTime(),
+                    UpdatedBy = c.String(maxLength: 256),
+                    MetaKeyword = c.String(maxLength: 256),
+                    MetaDescription = c.String(maxLength: 256),
+                    Status = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.PostCategories", t => t.CategoryID, cascadeDelete: true)
                 .Index(t => t.CategoryID);
-            
+
             CreateTable(
                 "dbo.PostTags",
                 c => new
-                    {
-                        PostID = c.Int(nullable: false),
-                        TagID = c.String(nullable: false, maxLength: 50, unicode: false),
-                    })
+                {
+                    PostID = c.Int(nullable: false),
+                    TagID = c.String(nullable: false, maxLength: 50, unicode: false),
+                })
                 .PrimaryKey(t => new { t.PostID, t.TagID })
                 .ForeignKey("dbo.Posts", t => t.PostID, cascadeDelete: true)
                 .ForeignKey("dbo.Tags", t => t.TagID, cascadeDelete: true)
                 .Index(t => t.PostID)
                 .Index(t => t.TagID);
-            
+
             CreateTable(
                 "dbo.Slides",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Description = c.String(maxLength: 256),
-                        Image = c.String(maxLength: 256),
-                        Url = c.String(maxLength: 256),
-                        DisplayOrder = c.Int(),
-                        Status = c.Boolean(nullable: false),
-                        Content = c.String(),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Description = c.String(maxLength: 256),
+                    Image = c.String(maxLength: 256),
+                    Url = c.String(maxLength: 256),
+                    DisplayOrder = c.Int(),
+                    Status = c.Boolean(nullable: false),
+                    Content = c.String(),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.SupportOnlines",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Department = c.String(maxLength: 50),
-                        Skype = c.String(maxLength: 50),
-                        Mobile = c.String(maxLength: 50),
-                        Email = c.String(maxLength: 50),
-                        Yahoo = c.String(maxLength: 50),
-                        Facebook = c.String(maxLength: 50),
-                        Status = c.Boolean(nullable: false),
-                        DisplayOrder = c.Int(),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(nullable: false, maxLength: 50),
+                    Department = c.String(maxLength: 50),
+                    Skype = c.String(maxLength: 50),
+                    Mobile = c.String(maxLength: 50),
+                    Email = c.String(maxLength: 50),
+                    Yahoo = c.String(maxLength: 50),
+                    Facebook = c.String(maxLength: 50),
+                    Status = c.Boolean(nullable: false),
+                    DisplayOrder = c.Int(),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.SystemConfigs",
                 c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Code = c.String(nullable: false, maxLength: 50, unicode: false),
-                        ValueString = c.String(maxLength: 50),
-                        ValueInt = c.Int(),
-                    })
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Code = c.String(nullable: false, maxLength: 50, unicode: false),
+                    ValueString = c.String(maxLength: 50),
+                    ValueInt = c.Int(),
+                })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.VisitorStatistics",
                 c => new
-                    {
-                        ID = c.Guid(nullable: false),
-                        VisitedDate = c.DateTime(nullable: false),
-                        IPAddress = c.String(maxLength: 50),
-                    })
+                {
+                    ID = c.Guid(nullable: false),
+                    VisitedDate = c.DateTime(nullable: false),
+                    IPAddress = c.String(maxLength: 50),
+                })
                 .PrimaryKey(t => t.ID);
-            
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.ApplicationUserRoles", "IdentityRole_Id", "dbo.ApplicationRoles");

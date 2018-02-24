@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using JapaneseBook.Data.Infrastructure;
+﻿using JapaneseBook.Data.Infrastructure;
 using JapaneseBook.Model.Entities;
+using System.Collections.Generic;
 
 namespace JapaneseBook.Data.Repositories
 {

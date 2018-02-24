@@ -14,11 +14,9 @@ body {
   }
 }
 
-
 .book-detail li{
     list-style : none;
     padding : 10px 0px;
-    
 }
 
 .book-detail .book-detail-lb{

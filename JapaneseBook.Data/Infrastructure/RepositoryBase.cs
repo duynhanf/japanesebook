@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JapaneseBook.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
+
         private JapaneseBookDbContext m_objJapaneseBookDbContext;
         private readonly IDbSet<T> m_objDbSet;
 
@@ -24,7 +23,8 @@ namespace JapaneseBook.Data.Infrastructure
         {
             get { return m_objJapaneseBookDbContext ?? (m_objJapaneseBookDbContext = m_objDbFactory.Init()); }
         }
-        #endregion
+
+        #endregion Properties
 
         protected RepositoryBase(IDbFactory x_objDbFactory)
         {
@@ -33,6 +33,7 @@ namespace JapaneseBook.Data.Infrastructure
         }
 
         #region Implementation
+
         public virtual T Add(T x_TEntity)
         {
             return m_objDbSet.Add(x_TEntity);
@@ -65,7 +66,6 @@ namespace JapaneseBook.Data.Infrastructure
         {
             return m_objDbSet.Where(where).ToList();
         }
-
 
         public virtual int Count(Expression<Func<T, bool>> where)
         {
@@ -132,6 +132,7 @@ namespace JapaneseBook.Data.Infrastructure
         {
             return m_objJapaneseBookDbContext.Set<T>().Count<T>(predicate) > 0;
         }
-        #endregion
+
+        #endregion Implementation
     }
 }

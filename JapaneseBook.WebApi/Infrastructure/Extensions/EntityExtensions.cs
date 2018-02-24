@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using JapaneseBook.Model.Entities;
-//using JapaneseBook.Web.Models;
+﻿//using JapaneseBook.Web.Models;
 
 namespace JapaneseBook.Web.Infrastructure.Extensions
 {
@@ -28,7 +23,6 @@ namespace JapaneseBook.Web.Infrastructure.Extensions
             postCategory.MetaKeyword = postCategoryVm.MetaKeyword;
             postCategory.MetaDescription = postCategoryVm.MetaDescription;
             postCategory.Status = postCategoryVm.Status;
-
         }
         public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryVm)
         {
@@ -48,7 +42,6 @@ namespace JapaneseBook.Web.Infrastructure.Extensions
             productCategory.MetaKeyword = productCategoryVm.MetaKeyword;
             productCategory.MetaDescription = productCategoryVm.MetaDescription;
             productCategory.Status = productCategoryVm.Status;
-
         }
         public static void UpdatePost(this Post post, PostViewModel postVm)
         {
@@ -140,7 +133,6 @@ namespace JapaneseBook.Web.Infrastructure.Extensions
         }
         public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
         {
-
             appUser.Id = appUserViewModel.Id;
             appUser.FullName = appUserViewModel.FullName;
             appUser.BirthDay = appUserViewModel.BirthDay;

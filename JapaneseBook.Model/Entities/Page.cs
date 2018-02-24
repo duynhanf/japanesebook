@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JapaneseBook.Model.Entities.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using JapaneseBook.Model.Entities.Abstract;
 
 namespace JapaneseBook.Model.Entities
 {

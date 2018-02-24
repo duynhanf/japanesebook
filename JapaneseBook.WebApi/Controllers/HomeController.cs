@@ -1,9 +1,5 @@
 ﻿using JapaneseBook.Model.Entities;
 using JapaneseBook.WebApi.ViewModels.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace JapaneseBook.WebApi.Controllers
@@ -17,7 +13,7 @@ namespace JapaneseBook.WebApi.Controllers
             return View();
         }
 
-       // [ChildActionOnly]
+        // [ChildActionOnly]
         //[OutputCache(Duration = 3600)]
         public ActionResult _SideBar()
         {
@@ -27,10 +23,8 @@ namespace JapaneseBook.WebApi.Controllers
                 Name = "TRY N2",
                 URL = "/Book/try-n2"
             });
-            
+
             return PartialView(objSideBarModel);
         }
     }
-
-    
 }

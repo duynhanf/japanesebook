@@ -1,6 +1,6 @@
 ﻿using JapaneseBook.Model.Entities;
-using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace JapaneseBook.Data
 {
@@ -67,7 +67,6 @@ namespace JapaneseBook.Data
             builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
             builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
             builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
-
         }
     }
 }
